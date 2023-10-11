@@ -12,6 +12,8 @@ app.use(
   })
 );
 
+const port = process.env.PORT || 8000;
+
 app.get("/", (req, res) => {
   const ip =
     req.headers["cf-connecting-ip"] ||
@@ -24,6 +26,6 @@ app.get("/", (req, res) => {
 });
 
 
-app.listen(3000,()=>{
+app.listen(port,()=>{
     console.log('listing on 3000')
 })
