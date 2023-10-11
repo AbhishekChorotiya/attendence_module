@@ -10,7 +10,7 @@ function App() {
   const [ip,setIP] = useState('');
 
   useEffect(()=>{
-
+    handleSubmit()
     const success = (pos)=>{
       setLatitude(Math.floor(pos.coords.latitude*1000))
       setLongitude(Math.floor(pos.coords.longitude*1000))
@@ -46,8 +46,6 @@ function App() {
     // alert(data)
     setIP(data);
 
-
-
   }
 
   return (
@@ -64,7 +62,7 @@ function App() {
         <h1>{`Latitude: ${latitude}`}</h1>
         <h1>{`longitude: ${longitude}`}</h1>
         <h1>{`IP: ${ip}`}</h1>
-      <button onClick={handleSubmit}>Get my geoCode</button>
+      {/* <button onClick={handleSubmit}>Get my geoCode</button> */}
       </header>
     </div>
   );
