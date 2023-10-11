@@ -12,7 +12,7 @@ app.use(
   })
 );
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
   const ip =
