@@ -33,7 +33,7 @@ function App() {
       latitude,longitude
     }
 
-    const res = await fetch('http://localhost:5000/find',{
+    const res = await fetch('/find',{
       method:'post',
       headers:{
         "Content-Type": "application/json"
