@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-
+const wifi = require("node-wifi");
 const getmac = require("getmac");
 const os = require("os");
 
@@ -23,6 +23,30 @@ app.use(
   app.use(express.static(path.join(__dirname, "public")));
 
 const port = process.env.PORT || 5000;
+
+wifi.init({
+  iface: null, // Use default interface
+});
+
+app.get("/start-attendance", (req, res) => {
+  console.log("client request incoming...");
+  wifi.scan((error, networks) => {
+    if (error) {
+      console.error(error);
+      res.status(500).json({ error: "Error scanning Wi-Fi networks" });
+    } else {
+      const connectedDevices = networks.map((network) => [
+        network.ssid,
+        network.mac,
+        network.bssid,
+        network.signal_level,
+      ]);
+      console.log(connectedDevices);
+      res.json({ devices: connectedDevices });
+    }
+  });
+  // res.send('')
+});
 
 app.get("/", (req, res) => {
   const ip =
