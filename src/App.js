@@ -75,7 +75,7 @@ function App() {
         <h1>{`Latitude: ${latitude}`}</h1>
         <h1>{`longitude: ${longitude}`}</h1>
         <h1>{`IP: ${ip}`}</h1>
-        <h1>{`Mac: ${mac}`}</h1>
+        <h1>Mac {`: ${mac}`}</h1>
       {/* <button onClick={handleSubmit}>Get my geoCode</button> */}
       </header>
     </div>
