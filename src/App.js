@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/mac")
+      .get("/mac")
       .then((response) => {
         setMac(response.data);
         console.log("Mac Address :", response.data);
@@ -26,7 +26,7 @@ function App() {
 
   const startAttendance = () => {
     axios
-      .get("http://localhost:5000/start-attendance")
+      .get("/start-attendance")
       .then((response) => {
         setAttendanceDevices(response.data.devices);
         console.log(

@@ -25,7 +25,7 @@ app.use(
 const port = process.env.PORT || 5000;
 
 wifi.init({
-  iface: null, // Use default interface
+  iface: 'wlan0', // Use default interface
 });
 
 app.get("/start-attendance", (req, res) => {
