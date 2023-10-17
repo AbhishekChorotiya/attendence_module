@@ -8,6 +8,18 @@ function App() {
   const [latitude,setLatitude] = useState(0);
   const [longitude,setLongitude] = useState(0);
   const [ip,setIP] = useState('');
+  const [mac,setMac] = useState('')
+
+  useEffect(()=>{
+    axios.get('http://localhost:5000/mac')
+    .then(response => {
+      setMac(response.data);
+      console.log('Mac Address :', response.data);
+    })
+    .catch(error => {
+      console.error('Error in getting mac:', error);
+    });
+  },[])
 
   useEffect(()=>{
     handleSubmit()
@@ -62,6 +74,7 @@ function App() {
         <h1>{`Latitude: ${latitude}`}</h1>
         <h1>{`longitude: ${longitude}`}</h1>
         <h1>{`IP: ${ip}`}</h1>
+        <h1>{`Mac: ${mac}`}</h1>
       {/* <button onClick={handleSubmit}>Get my geoCode</button> */}
       </header>
     </div>

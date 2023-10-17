@@ -2,6 +2,9 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 
+const getmac = require("getmac");
+const os = require("os");
+
 const app = express();
 var cors = require("cors");
 
@@ -42,6 +45,30 @@ app.post("/find", (req, res) => {
     res.json(ip)
 });
 
+app.get("/mac", (req, res) => {
+  function getWifiMacAddress() {
+    const networkInterfaces = os.networkInterfaces();
+    const wifiInterface =
+      networkInterfaces["Wi-Fi"] || networkInterfaces["wlan0"]; // Adjust interface name based on your operating system
+
+    if (wifiInterface) {
+      const macAddress = wifiInterface[0].mac;
+      return macAddress;
+    } else {
+      return "WiFi interface not found on this device.";
+    }
+  }
+
+  const wifiMacAddress = getWifiMacAddress();
+
+  if (wifiMacAddress !== "WiFi interface not found on this device.") {
+    console.log("WiFi MAC Address: " + wifiMacAddress);
+  } else {
+    console.log(wifiMacAddress);
+  }
+
+  res.send(wifiMacAddress)
+});
 
 app.listen(port,()=>{
     console.log('listing on 5000')
